@@ -10,6 +10,12 @@ const bodyParser = require('body-parser')
 const userRoute = require('./app/routes/user_route')
 const app = express()
 
+const corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+app.use(cors(corsOptions))
+
 // Accept json in express server
 app.use(bodyParser.json({limit: '50mb', extended: true}))
 // Configure bodyparser to handle post requests
@@ -17,7 +23,6 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}))
 
 app.use(session({secret : process.env.TOKEN_SECRET, resave : false, saveUninitialized : true}))
 app.enable("trust proxy")
-app.use(cors())
 app.use(helmet())
 
 //add all the http route
