@@ -27,8 +27,8 @@ const corsOptions = {
     }
 }
 
-app.enable("trust proxy"); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
-app.use(cors());
+// app.enable("trust proxy"); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
+app.use(cors(corsOptions));
 app.use(helmet());
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
