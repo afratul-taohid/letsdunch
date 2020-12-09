@@ -10,11 +10,16 @@ const bodyParser = require('body-parser')
 const userRoute = require('./app/routes/user_route')
 const app = express()
 
-const corsOptions = {
-    origin: 'http://localhost:3000',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-app.use(cors(corsOptions))
+// const corsOptions = {
+//     origin: '*',
+// }
+// app.use(cors(corsOptions))
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 // Accept json in express server
 app.use(bodyParser.json({limit: '50mb', extended: true}))
