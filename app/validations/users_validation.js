@@ -9,7 +9,7 @@ const userSignUpValidation = {
         firstName: Joi.string().required(),
         lastName: Joi.string().required(),
         email: Joi.string().required(),
-        password: Joi.string().length(6).required(),
+        password: Joi.string().min(6).required(),
     })
 }
 
