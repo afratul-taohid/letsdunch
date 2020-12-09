@@ -17,18 +17,18 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}))
 app.use(session({secret : process.env.TOKEN_SECRET, resave : false, saveUninitialized : true}))
 
 const whitelist = ['https://api.letsdunch.com','http://localhost:3000']
-const corsOptions = {
-    origin: function (origin, callback) {
-        if (whitelist.indexOf(origin) !== -1) {
-            callback(null, true)
-        } else {
-            callback(new Error('Not allowed by CORS'))
-        }
-    }
-}
+// const corsOptions = {
+//     origin: function (origin, callback) {
+//         if (whitelist.indexOf(origin) !== -1) {
+//             callback(null, true)
+//         } else {
+//             callback(new Error('Not allowed by CORS'))
+//         }
+//     }
+// }
 
 // app.enable("trust proxy"); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(helmet());
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
