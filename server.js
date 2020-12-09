@@ -10,10 +10,7 @@ const bodyParser = require('body-parser')
 const userRoute = require('./app/routes/user_route')
 const app = express()
 
-const corsOptions = {
-    origin: '*',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
+const corsOptions = { origin: true, credentials: true }
 app.use(cors(corsOptions))
 
 // Accept json in express server
